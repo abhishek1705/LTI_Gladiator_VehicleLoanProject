@@ -108,6 +108,28 @@ namespace VehicleLoanProject.Controllers
             return Ok($"{n}");
         }
 
+
+        [HttpPost]
+        [Route("AddDocuments")]
+        public IActionResult PostIdentityDocuments(IdentityDocument idoc)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    /*db.Depts.Add(dept);
+                    db.SaveChanges();*/
+                    db.Database.ExecuteSqlInterpolated($"adddocs {idoc.Adharcard}, {idoc.Pancard}, {idoc.Photo}, {idoc.Salaryslip}, {idoc.CustomerId}");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            return Created("Documents Successfully Uploaded", idoc);
+        }
+
+
     }
 }
 
