@@ -15,6 +15,15 @@ namespace VehicleLoanProject.Controllers
     {
         VehicleLoanDatabaseContext db = new VehicleLoanDatabaseContext();
 
+
+        
+        
+
+
+        /// <summary>
+        /// Get method which returns all the columns in applicant details model
+        /// </summary>
+        /// <returns>returns data in iqueryable type</returns>
         [HttpGet]
         [Route("GetApplicants")]
         public IActionResult GetApplicantDetails()
@@ -24,6 +33,13 @@ namespace VehicleLoanProject.Controllers
         }
 
 
+
+        /// <summary>
+        /// Post method which adds a new record in the applicant details model
+        /// stored procedure named adduser is used
+        /// </summary>
+        /// <param name="applicantDetail"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AddApplicants")]
         public IActionResult PostApplicantDetails(ApplicantDetail applicantDetail)
@@ -47,6 +63,13 @@ namespace VehicleLoanProject.Controllers
             return Created("Record successfully added", applicantDetail);
         }
 
+
+
+        /// <summary>
+        ///  Get method to retrieve applicant details using customerID(PK)
+        /// </summary>
+        /// <param name="CustomerID"></param>
+        /// <returns>returns data in iqueryable type</returns>
         [HttpGet]
         [Route("GetApplicants/{CustomerId}")]
         public IActionResult GetApplicantDetails(int? CustomerID)
@@ -63,6 +86,13 @@ namespace VehicleLoanProject.Controllers
             return Ok(data);
         }
 
+        /// <summary>
+        /// Put method to make changes to a specific applicant record
+        /// using customerid as param
+        /// </summary>
+        /// <param name="CustomerId"></param>
+        /// <param name="applicant"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("EditApplicants/{CustomerId}")]
         public IActionResult PutApplicantDetails(int CustomerId, ApplicantDetail applicant)
@@ -100,7 +130,15 @@ namespace VehicleLoanProject.Controllers
         //    }
         //    return Ok("Failure");
         //}
+        
 
+
+        /// <summary>
+        /// Post method to validate userID and password of user
+        /// userid and password is retrieved from frontend and validated with DB
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("UserLogin")]
 
@@ -115,7 +153,12 @@ namespace VehicleLoanProject.Controllers
                 return BadRequest("Incorrect");
         }
 
-
+        /// <summary>
+        ///  Post method to validate adminID and adminpassword of user
+        ///  adminid and adminpassword is retrieved from frontend and validated with DB
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AdminLogin")]
         public IActionResult AdminLogin(AdminLogin admin) {
