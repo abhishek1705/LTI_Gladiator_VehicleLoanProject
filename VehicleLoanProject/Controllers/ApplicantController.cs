@@ -54,9 +54,9 @@ namespace VehicleLoanProject.Controllers
                     db.Database.ExecuteSqlInterpolated($"adduser {applicantDetail.FirstName},{applicantDetail.LastName},{applicantDetail.Age},{applicantDetail.Gender},{applicantDetail.ContactNo},{applicantDetail.EmailId},{applicantDetail.Address},{applicantDetail.State},{applicantDetail.City},{applicantDetail.Pincode},{applicantDetail.UserId},{applicantDetail.Password}");
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return BadRequest("Something went wrong while adding the record");
+                    return BadRequest(ex.Message);
                 }
 
             }
